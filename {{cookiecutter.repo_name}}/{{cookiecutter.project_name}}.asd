@@ -9,15 +9,10 @@
   :bug-tracker ""
   :source-control (:git "")
 
-  ;; Dependencies.
-  :depends-on (:clingon)
+  :class :package-inferred-system
 
-  ;; Project stucture.
-  :serial t
-  :components ((:module "src"
-                        :serial t
-                        :components ((:file "packages")
-                                     (:file "{{ cookiecutter.project_name }}"))))
+  ;; Dependencies.
+  :depends-on ("{{ cookiecutter.project_name }}/src/main")
 
   ;; Build a binary:
   ;; don't change this line.
