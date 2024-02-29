@@ -7,7 +7,7 @@
   
   :class :package-inferred-system
 
-  :depends-on (":{{ cookiecutter.project_name }}-tests/tests/{{ cookiecutter.project_name }}-tests")
+  :depends-on ("{{ cookiecutter.project_name }}-tests/tests/main")
   
   ;; The following would not return the right exit code on error, but still 0.
   ;; :perform (test-op (op _) (symbol-call :fiveam :run-all-tests))
