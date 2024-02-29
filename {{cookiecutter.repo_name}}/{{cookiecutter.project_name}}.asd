@@ -20,4 +20,4 @@
   ;; binary name: adapt.
   :build-pathname "{{ cookiecutter.project_name }}"
   ;; entry point: here "main" is an exported symbol. Otherwise, use a double ::
-  :entry-point "{{ cookiecutter.project_name}}:main")
+  :entry-point "{{ cookiecutter.project_name}}/src/main:main")
