@@ -37,13 +37,14 @@ username [me]:
 Initialised empty Git repository in /home/vince/bacasable/lisp-projects/cookie-lisp-project/.git/
 ```
 
-Run it straight away:
+Run it straight away (after initiating [Qlot](https://github.com/fukamachi/qlot)):
 
 ```bash
 $ cd cookie-lisp-project
-$ sudo apt install rlwrap  # a utility to bring readline keybindings and history to SBCL on the terminal.
+$ qlot init 
+$ qlot install
 $ make run
-rlwrap sbcl --load run.lisp
+sbcl --load run.lisp
 This is SBCL 2.0.10, an implementation of ANSI Common Lisp.
 More information about SBCL is available at <http://www.sbcl.org/>.
 

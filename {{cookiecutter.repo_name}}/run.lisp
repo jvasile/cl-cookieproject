@@ -1,7 +1,7 @@
 "
 Usage:
 
-rlwrap sbcl --load run.lisp
+sbcl --load run.lisp
 
 This loads the project's asd, loads the quicklisp dependencies, and
 calls the main function.
