@@ -24,6 +24,10 @@ SLYNK_DIR=$(find .qlot/dists/sly -path ".qlot/dists/sly/*/slynk/slynk.asd")
 
 # Start slynk listener
 PORT=4008
-exec qlot exec rlwrap ros run --eval '(push #p"'${SLYNK_DIR}'/" asdf:*central-registry*)' \
+exec qlot exec rlwrap ros run \
+     --eval '(push #p"'${SLYNK_DIR}'/" asdf:*central-registry*)' \
      --eval '(asdf:compile-system :slynk)' \
+     --eval '(load "{{ cookiecutter.project_name }}.asd")' \
+     --eval '(ql:quickload "{{ cookiecutter.project_name }}")' \
      --eval '(slynk:create-server :port '$PORT')'
+     --eval '(in-package :{{ cookiecutter.project_name }}/src/main)'
