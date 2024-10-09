@@ -1,0 +1,37 @@
+#!/usr/bin/env bash
+# Do - The Simplest Build Tool on Earth.
+# Documentation and examples see https://github.com/8gears/do
+#
+SCRIPTNAME=`basename "$0"`
+BASEDIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )/..
+
+LISP=sbcl
+LISP_ARGS=""
+LISP_BUILD_ARGS=""
+
+if [ ${LISP}=="sbcl" ]; then
+    LISP_ARGS="--noinform --no-userinit"
+    LISP_BUILD_ARGS="--non-interactive"
+fi
+
+run() {
+    ${LISP} ${LISP_ARGS} --load .qlot/setup.lisp --load run.lisp
+}
+
+build() {
+    ${LISP} \
+	    ${LISP_ARGS} \
+	    ${LISP_BUILD_ARGS} \
+		--load .qlot/setup.lisp \
+		--load {{ cookiecutter.project_name}}.asd \
+		--eval '(ql:quickload :{{ cookiecutter.project_name}})' \
+		--eval '(asdf:make :{{ cookiecutter.project_name}})'
+}
+
+test() {
+    ${LISP} ${LISP_ARGS} ${LISP_BUILD_ARGS} --load .qlot/setup.lisp --load run-tests.lisp
+}
+
+"$@" # <- execute the task
+[ "$#" -gt 0 ] || printf "Usage:\n\t./${SCRIPTNAME} %s\n" "($(compgen -A function | grep '^[^_]' | paste -sd '|' -))"
+
