@@ -1,0 +1,29 @@
+#!/bin/bash
+
+# We want to run slink with our quicklisp taken care of by qlot, so we
+# can't just M-x sly from emacs.  We have to run this, then
+# sly-connect to localhost:4008
+
+# Why didn't I write this as a bit of lisp?  I could load it in.  But
+# I am not savvy enough about symbols and how you load asd systems to
+# make it work.  The problem I encountered is that I asdf-load slynk,
+# which interns the symbol slynk.  Then on the next line we use that
+# symbol.  That seems find except that the second line fails to
+# compile because the symbol slynk doesn't exist.  Surely there's an
+# easy way to solve this, but I haven't done lisp in... almost a
+# decade and I cannot find it right now.  So instead, here we eval the
+# statements one by one so by the time sbcl compiles the second
+# statement, the symbol exists.
+
+# Make sure we're in the script directory because we look below here for slynk.asd
+SCRIPT_DIR=$(dirname $(readlink -f $0))
+cd ${SCRIPT_DIR}
+
+# Find the dir tht contains slynk.asd
+SLYNK_DIR=$(find .qlot/dists/sly -path ".qlot/dists/sly/*/slynk/slynk.asd")
+
+# Start slynk listener
+PORT=4008
+exec qlot exec rlwrap ros run --eval '(push #p"'${SLYNK_DIR}'/" asdf:*central-registry*)' \
+     --eval '(asdf:compile-system :slynk)' \
+     --eval '(slynk:create-server :port '$PORT')'
