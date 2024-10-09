@@ -14,29 +14,10 @@ A [cookiecutter](https://github.com/audreyr/cookiecutter) template for Common Li
   (`uiop:command-line-arguments`). Proper parsing is left to do with a
   third-party library ([clingon](https://github.com/dnaeon/clingon), unix-opts, defmain, adopt…).
 
-We are also shaping out a template for a web project, see [cl-cookieweb](https://github.com/vindarel/cl-cookieweb).
-
-NEW! 🎥 See our demo video: https://www.youtube.com/watch?v=XFc513MJjos
 
 ## Usage
 
-Create a new project. You'll be prompted to provide some basic
-information about your new project, which will then be auto-generated
-in the current working directory:
-
-```bash
-$ pip install cookiecutter
-$ cookiecutter https://github.com/vindarel/cl-cookieproject
-project_name [cookie-lisp-project]:
-repo_name [cookie-lisp-project]:
-description []: A test project
-version [0.0.1]:
-year [1984]:
-author [CL User]: me
-email [me@mail.com]:
-username [me]:
-Initialised empty Git repository in /home/vince/bacasable/lisp-projects/cookie-lisp-project/.git/
-```
+cookie-cutter /path/or/url/to/this/repo project_name=foo
 
 Run it straight away:
 
@@ -129,38 +110,7 @@ The first time you run `cookiecutter` with a link to a GitHub repository, the sk
 - [ ] more CI setup
 - [ ] build a .deb (and .rpm)
 
-
-## See also
-
-- https://github.com/dnaeon/cl-skeleton
-  - the newest of skeletons (late 2022), by an author with great contributed libraries.
-  - an ASDF system, a test system, scripts for running the tests, Dockerfiles for ECL, CCL and SBCL implementations and Github Actions for building Docker images and running the test suite of the project.
-  - just a shell script to fill-in the template files.
-  - from what I see, the generated project is very simple, the .asd is barebones (no default op to build a binary with asdf:make for example). The value lies in the files around: the 3 little Dockerfiles (they use clfoundation's images, like I do for Gitlab CI), the script to run tests (they use `rove`, the script returns the correct error code).
-- https://github.com/fukamachi/cl-project
-  - one-package per file style (called "modern" but I find it too cumbersome to use)
-  - uses the Rove test system (and I think it is not ready, see [this discussion](https://github.com/LispCookbook/cl-cookbook/issues/297) and its own issues)
-  - less integration (no recipe to build binaries, use CLI args or use Roswell). Pure CL, doesn't need Cookiecutter (Python).
-- https://github.com/triclops200/quickapp and [quickapp-cli](https://github.com/triclops200/quickapp-cli)
-  - last commit 2016 / 2015
-    - its `internal-quit` in app-utils.lisp should be `uiop:quit`
-  - uses buildapp: kind of old and not needed now with `asdf:make` or Roswell? (proove me wrong)
-  - includes an args parsing utility (it should probably use a more complete library though)
-- https://www.xach.com/lisp/quickproject/
-  - doesn't include a test definition
-  - simple, nothing fancy.
-- https://github.com/40ants/cl-project-with-docs
-  - uses Sphinx and reStructured text to render nice and readable HTML documentation.
-  - automatic gh-pages
-  - includes tests, CI (Travis), Roswell
-  - needs Sphinx (Python) and cl-launch.
-  - 2018: I suspect the author has now another favourite documentation generator (MGLPAX, 40ants/doc) and might not update much this skeleton.
-- https://github.com/40ants/project-templates : templates to create a CL library or a web app with Reblocks.
-  - uses Quicklisp, Ultralisp, Qlot, CLPM, has Rove tests, has a GitHub CI, has docs (based on 40ants-doc). Based on the [mystic](https://github.com/roswell/mystic) templating system.
-  - [Youtube demo](https://www.youtube.com/watch?v=lwcmOZ0DQf0)
-  - created in 2023
-  - as of writing, doesn't have a utility to quickly run the web app project from the terminal, but from the editor, so all in all maybe a bit hard to use for total beginners. Otherwise, it's a configuration totally worth checking out.
-
 ---
 
-Acknowledgement: we forked [cookiecutter-cl](https://github.com/hbristow/cookiecutter-cl).
+Acknowledgement: we forked [cl-cookiecutter](https://github.com/kjinho/cl-cookieproject),
+which forked [cookiecutter-cl](https://github.com/hbristow/cookiecutter-cl).
