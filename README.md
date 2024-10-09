@@ -19,11 +19,20 @@ A [cookiecutter](https://github.com/audreyr/cookiecutter) template for Common Li
 
 cookie-cutter /path/or/url/to/this/repo project_name=foo
 
-Run it straight away:
+Then answer the questions.
+
+### Slynk
+
+Because we're using qlot, we don't want to `M-x sly` from inside
+emacs.  Instead, we want to start the sbcl session using the runner in
+the dir: `./run-slynk`, then `M-x sly-connect` to the running sbcl,
+which listens on port 4008 by default.
+
+### Run it
 
 ```bash
 $ cd cookie-lisp-project
-$ make run
+$ ./dosh run
 sbcl --load run.lisp
 This is SBCL 2.0.10, an implementation of ANSI Common Lisp.
 More information about SBCL is available at <http://www.sbcl.org/>.
@@ -48,10 +57,10 @@ Hello from cookie-lisp-project!
 
 You can see the `Hello` from the `main` function, and we are given a Lisp REPL.
 
-Build an executable:
+### Build an executable
 
 ```bash
-$ make build
+$ ./dosh build
 […]
 [saving current Lisp image into /home/vince/bacasable/lisp-projects/cookie-lisp-project/cookie-lisp-project:
 writing 0 bytes from the read-only space at 0x50000000
