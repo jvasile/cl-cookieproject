@@ -2,6 +2,7 @@
 
 A [cookiecutter](https://github.com/audreyr/cookiecutter) template for Common Lisp projects featuring:
 
+- Some default qlot packages: defstar and sly
 - Canonical Common Lisp project structure, a ready-to-use project with an entry point and unit tests.
 - Run project from sources
 - Build a binary
@@ -37,12 +38,10 @@ username [me]:
 Initialised empty Git repository in /home/vince/bacasable/lisp-projects/cookie-lisp-project/.git/
 ```
 
-Run it straight away (after initiating [Qlot](https://github.com/fukamachi/qlot)):
+Run it straight away:
 
 ```bash
 $ cd cookie-lisp-project
-$ qlot init 
-$ qlot install
 $ make run
 sbcl --load run.lisp
 This is SBCL 2.0.10, an implementation of ANSI Common Lisp.
