@@ -1,5 +1,9 @@
 {{cookiecutter.project_name}}
 
+# qlot
+qlfile.lock
+.qlot
+
 ### CommonLisp ###
 *.FASL
 *.fasl
