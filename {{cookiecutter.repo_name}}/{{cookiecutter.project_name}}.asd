@@ -1,4 +1,7 @@
-(in-package :asdf-user)
+(defpackage {{ cookiecutter.project_name }}-system
+  (:use :common-lisp :asdf))
+
+(in-package :{{ cookiecutter.project_name }})
 
 (defsystem "{{ cookiecutter.project_name }}"
   :author "{{ cookiecutter.author }} <{{ cookiecutter.email }}>"
@@ -12,7 +15,10 @@
   :class :package-inferred-system
 
   ;; Dependencies.
-  :depends-on ("{{ cookiecutter.project_name }}/src/main")
+  :depends-on ("{{ cookiecutter.project_name }}/src/packages")
+
+  :components ((:file "src/packages")
+	       (:file "src/main" :depends-on ("src/packages")))
 
   ;; Build a binary:
   ;; don't change this line.
