@@ -4,6 +4,14 @@
   (:export :main))
 (in-package :{{ cookiecutter.project_name }}/src/main)
 
+;; We use these for type checking
+(defun clingon/option-list-p (list)
+  (every (lambda (item) (typep item 'clingon:option)) list))
+(deftype clingon/option-list-t ()
+  `(satisfies clingon/option-list-p))
+
+
+(declaim (ftype (function () (clingon/option-list-t)) cli/options))
 (defun cli/options ()
   "Returns a list of options for our main command"
   (list
@@ -15,16 +23,19 @@
     :key :verbose)
    ))
 
+(declaim (ftype (function(clingon.command:command)) cli/handler))
 (defun cli/handler (cmd)
   "The top-level handler"
-  (declare (ignorable args verbose))
   (let ((args      (clingon:command-arguments cmd))
         (verbose   (clingon:getopt cmd :verbose)))
+    (declare (ignorable args verbose))
     (when (null args)
       (clingon:print-usage-and-exit cmd t))
     ;; insert commands here
+    (write-line "Add code here")
   ))
     
+(declaim (ftype (function () clingon.command:command) cli/command))
 (defun cli/command ()
   (clingon:make-command
    :name "{{ cookiecutter.project_name }}"
@@ -36,6 +47,7 @@
    :options (cli/options)
    :handler #'cli/handler))
 
+(declaim (ftype (function (&rest string)) %main))
 (defun %main (&rest argv)
   (setf clingon:*default-help-flag*
     (clingon:make-option 
@@ -44,8 +56,7 @@
      :long-name "help"
      :short-name #\h
      :key :clingon.help.flag))
-  (let ((app (cli/command)))
-    (clingon:run app argv)))
+    (clingon:run (cli/command) argv))
         
 (defun main ()
   "Entry point for the executable.
