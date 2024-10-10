@@ -2,7 +2,7 @@
 
 A [cookiecutter](https://github.com/audreyr/cookiecutter) template for Common Lisp projects featuring:
 
-- Some default qlot packages: defstar and sly
+- A default qlot packages: sly
 - Canonical Common Lisp project structure, a ready-to-use project with an entry point and unit tests.
 - Run project from sources
 - Build a binary
