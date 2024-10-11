@@ -15,7 +15,7 @@ if [ ${LISP}=="sbcl" ]; then
 fi
 
 run() {
-    ${LISP} ${LISP_ARGS} --load .qlot/setup.lisp --load run.lisp -- "$@"
+    ${LISP} ${LISP_ARGS} --load .qlot/setup.lisp --load run.lisp "$@"
 }
 
 build() {
