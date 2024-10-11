@@ -15,7 +15,7 @@ Another solution to run the app is to build and run a binary (see README).
 
 (load "{{ cookiecutter.project_name}}.asd")
 
-(ql:quickload "{{ cookiecutter.project_name }}")
+(ql:quickload "{{ cookiecutter.project_name }}" :silent t)
 
 (in-package :{{ cookiecutter.project_name}}/src/main)
 (handler-case
