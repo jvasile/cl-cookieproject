@@ -1,4 +1,8 @@
-(in-package :asdf-user)
+(defpackage {{ cookiecutter.project_name }}-tests-system
+  (:use :common-lisp :asdf))
+
+(in-package :{{ cookiecutter.project_name }}-tests-system)
+
 (defsystem "{{ cookiecutter.project_name }}-tests"
   :description "Test suite for the {{ cookiecutter.project_name }} system"
   :author "{{ cookiecutter.author }} <{{ cookiecutter.email }}>"

@@ -1,7 +1,7 @@
 (defpackage {{ cookiecutter.project_name }}-system
   (:use :common-lisp :asdf))
 
-(in-package :{{ cookiecutter.project_name }})
+(in-package :{{ cookiecutter.project_name }}-system)
 
 (defsystem "{{ cookiecutter.project_name }}"
   :author "{{ cookiecutter.author }} <{{ cookiecutter.email }}>"
