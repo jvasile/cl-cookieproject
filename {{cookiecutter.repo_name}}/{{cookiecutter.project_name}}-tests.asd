@@ -3,7 +3,7 @@
   :description "Test suite for the {{ cookiecutter.project_name }} system"
   :author "{{ cookiecutter.author }} <{{ cookiecutter.email }}>"
   :version "{{ cookiecutter.version }}"
-  :license "BSD"
+  :license "{{ cookiecutter.licence }}"
   
   :class :package-inferred-system
 

@@ -64,7 +64,7 @@
    :name "{{ cookiecutter.project_name }}"
    :description "{{ cookiecutter.description }}"
    :version "{{ cookiecutter.version }}"
-   :license "All rights reserved"
+   :license "{{ cookiecutter.licence }}"
    :authors '("{{ cookiecutter.author }} <{{ cookiecutter.email }}>")
    :usage "[OPTIONS]"
    :options (cli/options)

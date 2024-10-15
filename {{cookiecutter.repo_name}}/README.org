@@ -59,4 +59,4 @@ On Slime, load the test package and run `run!`.
 
 ---
 
-Licence: GPLv3+
+License: {{ cookiecutter.licence }}
