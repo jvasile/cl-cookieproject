@@ -29,47 +29,34 @@ A POC script is in the roswell/ directory.
 
 Your users can install the script with `{{ cookiecutter.username }}/{{ cookiecutter.project_name }}`.
 
+
 ** Dev
+
+*** Slynk
+
+Because we're using qlot, we don't want to `M-x sly` from inside
+emacs.  Instead, we want to start the sbcl session using the runner in
+the dir: `./dosh slynk`, then `M-x sly-connect` to the running sbcl,
+which listens on port 4008 by default.
+
+*** Testing
 
 Tests are defined with [Fiveam](https://common-lisp.net/project/fiveam/docs/).
 
-Run them from the terminal with `./dosh test`. You should see a failing test.
+Run them from the terminal with `./dosh test`. You should see test results.
 
 ```bash
 $ ./dosh test
 Running test suite TESTMAIN
- Running test TEST1 f
+ Running test TEST1 .
  Did 1 check.
-    Pass: 0 ( 0%)
+    Pass: 1 (100%)
     Skip: 0 ( 0%)
-    Fail: 1 (100%)
-
- Failure Details:
- --------------------------------
- TEST1 in TESTMAIN []:
-
-3
-
- evaluated to
-
-3
-
- which is not
-
-=
-
- to
-
-2
-
-Makefile:15: recipe for target 'test' failed
-
-$ echo $?
-2
+    Fail: 0 ( 0%)
 ```
 
 On Slime, load the test package and run `run!`.
 
 ---
 
-Licence: BSD
+Licence: GPLv3+

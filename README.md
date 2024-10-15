@@ -21,13 +21,6 @@ cookie-cutter /path/or/url/to/this/repo project_name=foo
 
 Then answer the questions.
 
-### Slynk
-
-Because we're using qlot, we don't want to `M-x sly` from inside
-emacs.  Instead, we want to start the sbcl session using the runner in
-the dir: `./dosh slynk`, then `M-x sly-connect` to the running sbcl,
-which listens on port 4008 by default.
-
 ### Run it
 
 ```bash
