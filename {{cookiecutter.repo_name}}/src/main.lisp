@@ -22,12 +22,13 @@
     :short-name #\v
     :long-name "verbose"
     :initial-value nil
+    :env-vars '("{{ cookiecutter.project_name | upper }}-VERBOSE")
     :key :verbose)
    (clingon:make-option
     :string
     :description "Path to config file"
     :long-name "config"
-    :env-vars '("{{ cookiecutter.project_name }}-config-path")
+    :env-vars '("{{ cookiecutter.project_name | upper }}-CONFIG-PATH")
     :initial-value "/etc/{{ cookiecutter.project_name }}/config.toml"
     :key :config)
 
@@ -35,6 +36,7 @@
      :choice
      :description "log level"
      :long-name "log-level"
+     :env-vars '("{{ cookiecutter.project_name | upper }}-LOG-LEVEL")
      :items '("info" "warn" "error" "debug")
      :key :log-level)
    ))

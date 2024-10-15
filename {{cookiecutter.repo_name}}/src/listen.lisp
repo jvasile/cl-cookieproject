@@ -10,7 +10,7 @@
     :short-name #\p
     :long-name "port"
     :initial-value 4949
-    :env-vars '("{{ cookiecutter.project_name }}-listen-port")
+    :env-vars '("{{ cookiecutter.project_name | upper }}-LISTEN-PORT")
     :key :port)
    ))
 
