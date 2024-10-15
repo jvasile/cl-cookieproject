@@ -20,20 +20,40 @@
     :flag
     :description "verbose"
     :short-name #\v
+    :long-name "verbose"
     :initial-value nil
     :key :verbose)
+   (clingon:make-option
+    :string
+    :description "Path to config file"
+    :long-name "config"
+    :env-vars '("{{ cookiecutter.project_name }}-config-path")
+    :initial-value "/etc/{{ cookiecutter.project_name }}/config.toml"
+    :key :config)
+
+   (clingon:make-option
+     :choice
+     :description "log level"
+     :long-name "log-level"
+     :items '("info" "warn" "error" "debug")
+     :key :log-level)
    ))
 
 (declaim (ftype (function(clingon.command:command)) cli/handler))
 (defun cli/handler (cmd)
   "The top-level handler"
   (let ((args      (clingon:command-arguments cmd))
+	(config-fname (clingon:getopt cmd :config))
         (verbose   (clingon:getopt cmd :verbose)))
     (declare (ignorable args verbose))
     (when (null args)
       (clingon:print-usage-and-exit cmd t))
     ;; insert commands here
     (write-line "Add code here")
+    (format t "Command: ~S~%" cmd)
+    (format t "Config fname: ~S~%" config-fname)
+    (format t "Args: ~S~%" args)
+    (format t "Verbose: ~B~%" verbose)
   ))
     
 (declaim (ftype (function () clingon.command:command) cli/command))
@@ -46,7 +66,8 @@
    :authors '("{{ cookiecutter.author }} <{{ cookiecutter.email }}>")
    :usage "[OPTIONS]"
    :options (cli/options)
-   :handler #'cli/handler))
+   :handler #'cli/handler
+   :sub-commands (list (listen/command))))
 
 (declaim (ftype (function (&rest string)) %main))
 (defun %main (&rest argv)
