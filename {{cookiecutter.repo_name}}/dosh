@@ -14,9 +14,7 @@ if [ ${LISP}=="sbcl" ]; then
     LISP_BUILD_ARGS="--non-interactive"
 fi
 
-run() {
-    ${LISP} ${LISP_ARGS} --load .qlot/setup.lisp --load run.lisp --end-toplevel-options "$@"
-}
+BASE_LISP="${LISP} ${LISP_ARGS} --load .qlot/setup.lisp"
 
 build() {
     ${LISP} \
@@ -28,8 +26,36 @@ build() {
 		--eval '(asdf:make :{{ cookiecutter.project_name}})'
 }
 
+run() {
+    ${BASE_LISP} --load run.lisp --end-toplevel-options "$@"
+}
+
+slynk() {
+    # We want to run slink with our quicklisp taken care of by qlot, so we
+    # can't just M-x sly from emacs.  We have to run this, then
+    # sly-connect to localhost:4008
+
+    # Make sure we're in the script directory because we look below here for slynk.asd
+    SCRIPT_DIR=$(dirname $(readlink -f $0))
+    cd ${SCRIPT_DIR}
+
+    # Find the dir tht contains slynk.asd
+    SLYNK_DIR=$(find .qlot/dists/sly -path ".qlot/dists/sly/*/slynk/slynk.asd")
+
+    # Start slynk listener
+    PORT=4008
+    exec qlot exec rlwrap ros run --eval '(push #p"'${SLYNK_DIR}'/" asdf:*central-registry*)' \
+	 --eval '(asdf:compile-system :slynk)' \
+	 --eval '(load "{{ cookiecutter.project_name}}.asd")' \
+	 --eval '(load "{{ cookiecutter.project_name}}.asd")' \
+	 --eval '(ql:quickload "{{ cookiecutter.project_name}}")' \
+	 --eval '(ql:quickload "{{ cookiecutter.project_name}}-tests")' \
+	 --eval '(slynk:create-server :port '$PORT')' \
+	 --eval '(in-package :{{ cookiecutter.project_name}}-tests/tests/main)'
+}
+
 test() {
-    ${LISP} ${LISP_ARGS} ${LISP_BUILD_ARGS} --load .qlot/setup.lisp --load run-tests.lisp
+    ${BASE_LISP} --load run-tests.lisp --end-toplevel-options "$@"
 }
 
 "$@" # <- execute the task
