@@ -1,3 +1,8 @@
+(uiop:define-package :{{ cookiecutter.project_name }}/src/main
+  (:use :cl)
+  (:import-from :clingon)
+  (:export :main))
+
 (in-package :{{ cookiecutter.project_name }}/src/main)
 
 ;; We use these for type checking

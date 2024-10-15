@@ -15,10 +15,9 @@
   :class :package-inferred-system
 
   ;; Dependencies.
-  :depends-on ("{{ cookiecutter.project_name }}/src/packages")
+  :depends-on ("{{ cookiecutter.project_name }}/src/main")
 
-  :components ((:file "src/packages")
-	       (:file "src/main" :depends-on ("src/packages")))
+  :components ((:file "src/main"))
 
   ;; Build a binary:
   ;; don't change this line.
